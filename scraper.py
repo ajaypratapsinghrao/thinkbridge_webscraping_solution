@@ -25,7 +25,7 @@ class WebScraper:
         if checkbox_exists:
             checkbox = await frame.wait_for_selector('input[type="checkbox"]')
             await checkbox.check()
-            await asyncio.sleep(10)
+            await asyncio.sleep(15)
             print("Checkbox clicked!")
             return True
         else:
@@ -45,6 +45,8 @@ class WebScraper:
                 a_tag = nested_div.find('a')
                 if a_tag:
                     company_name = a_tag.text
+        else:
+            company_name = None            
         return company_name
 
     def scrape_company_description(self, page_html_content):
@@ -53,6 +55,8 @@ class WebScraper:
             p_tag = nested_div.find('p')
             if p_tag:
                 company_description = p_tag.text
+        else:
+            company_description = None        
         return company_description
 
     def scrape_company_website_url(self, page_html_content):
@@ -62,19 +66,26 @@ class WebScraper:
             if parent_div:
                 a_tag = parent_div.find('a', itemprop='url')
                 company_website_url = a_tag.get('href')
+        else:
+            company_website_url = None        
         return company_website_url
 
     def scrape_company_review_count(self, page_html_content):
         h3_tag = page_html_content.find('h3', class_='l2 mb-half')
         if h3_tag:
             company_review_count = h3_tag.get_text(strip=True)
+        else:
+            company_review_count = None    
         return company_review_count
 
     def scrape_company_rating(self, page_html_content):
         span_tag = page_html_content.find('span', class_='c-midnight-90 pl-4th')
         if span_tag:
             company_rating = span_tag.get_text(strip=True)
+        else:
+            company_rating = None    
         return company_rating
+    
 
     async def scrape_all_company_details(self, url):
         
@@ -86,7 +97,7 @@ class WebScraper:
             try:                
                 await page.goto(url)
                 await page.wait_for_load_state("load")
-                await asyncio.sleep(10)
+                await asyncio.sleep(15)
                 content = await page.content()
                 current_hash = hashlib.sha224(content.encode()).hexdigest()
                 page_text_content, page_html_content = self.get_page_content(content)
