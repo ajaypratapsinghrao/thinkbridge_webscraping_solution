@@ -32,12 +32,12 @@ class WebScraper:
             print("Checkbox not found inside the iframe.")
             return True
 
-    def get_page_content(self, page_content):
+    async def get_page_content(self, page_content):
         html_content = BeautifulSoup(page_content, 'html.parser')
         text_content = html_content.get_text()
         return text_content, html_content
 
-    def scrape_company_name(self, page_html_content):
+    async def scrape_company_name(self, page_html_content):
         product_title_div = page_html_content.find(class_="product-head__title")
         if product_title_div:
             nested_div = product_title_div.find(itemprop="name")
@@ -49,7 +49,7 @@ class WebScraper:
             company_name = None            
         return company_name
 
-    def scrape_company_description(self, page_html_content):
+    async def scrape_company_description(self, page_html_content):
         nested_div = page_html_content.find(itemprop="description")
         if nested_div:
             p_tag = nested_div.find('p')
@@ -59,7 +59,7 @@ class WebScraper:
             company_description = None        
         return company_description
 
-    def scrape_company_website_url(self, page_html_content):
+    async def scrape_company_website_url(self, page_html_content):
         div_tag = page_html_content.find('div', string='Website')
         if div_tag:
             parent_div = div_tag.find_parent('div')
@@ -70,7 +70,7 @@ class WebScraper:
             company_website_url = None        
         return company_website_url
 
-    def scrape_company_review_count(self, page_html_content):
+    async def scrape_company_review_count(self, page_html_content):
         h3_tag = page_html_content.find('h3', class_='l2 mb-half')
         if h3_tag:
             company_review_count = h3_tag.get_text(strip=True)
@@ -78,7 +78,7 @@ class WebScraper:
             company_review_count = None    
         return company_review_count
 
-    def scrape_company_rating(self, page_html_content):
+    async def scrape_company_rating(self, page_html_content):
         span_tag = page_html_content.find('span', class_='c-midnight-90 pl-4th')
         if span_tag:
             company_rating = span_tag.get_text(strip=True)
@@ -100,18 +100,18 @@ class WebScraper:
                 await asyncio.sleep(15)
                 content = await page.content()
                 current_hash = hashlib.sha224(content.encode()).hexdigest()
-                page_text_content, page_html_content = self.get_page_content(content)
+                page_text_content, page_html_content = await self.get_page_content(content)
 
                 if "Checking if the site connection is secure" in page_text_content:
                     await self.handle_human_verification(page, current_hash)
                     content = await page.content()
-                    page_text_content, page_html_content = self.get_page_content(content)
+                    page_text_content, page_html_content = await self.get_page_content(content)
 
-                company_name = self.scrape_company_name(page_html_content)
-                company_description = self.scrape_company_description(page_html_content)
-                company_website_url = self.scrape_company_website_url(page_html_content)
-                company_review_count = self.scrape_company_review_count(page_html_content)
-                company_rating = self.scrape_company_rating(page_html_content)
+                company_name = await self.scrape_company_name(page_html_content)
+                company_description = await self.scrape_company_description(page_html_content)
+                company_website_url = await self.scrape_company_website_url(page_html_content)
+                company_review_count = await self.scrape_company_review_count(page_html_content)
+                company_rating = await self.scrape_company_rating(page_html_content)
 
                 company_details = {
                     'url': url,
@@ -148,7 +148,7 @@ class WebScraper:
         for url in url_list:
             parsed_url = urlparse(url)
             if "/products" in parsed_url.path:
-                task = asyncio.ensure_future(self.scrape_all_company_details(url))
+                task = asyncio.create_task(self.scrape_all_company_details(url))
                 tasks.append(task)
             else:
                 print("Web scraping supported for product page only")
