@@ -1,0 +1,28 @@
+{
+    "companies": [
+        {
+            "url": "https://www.g2.com/products/google-workspace/reviews",
+            "company_name": "Google Workspace",
+            "company_description": "Google Workspace brings email, chat, files, meetings and your favorite apps into a people-first experience powered by Google AI so that you can safely connect, create and collaborate.",
+            "company_website_url": "https://www.g2.com/external_clickthroughs/record?secure%5Bproduct_id%5D=1434&secure%5Btoken%5D=9f172bb6ca6c428acdcb8f73ace60eb4568e1c12191e5db9822140ae64ad1901&secure%5Burl%5D=https%3A%2F%2Fworkspace.google.com%2Fpricing.html&secure%5Burl_type%5D=product_website",
+            "review_count": "40,514 Google Workspace Reviews",
+            "company_rating": "4.6out of5"
+        },
+        {
+            "url": "https://www.g2.com/products/github/reviews",
+            "company_name": "GitHub",
+            "company_description": "GitHub is where the world builds software. Millions of individuals, organizations and businesses around the world use GitHub to discover, share, and contribute software. Developers at startups to Fortune 50 companies use GitHub, every step of the way.",
+            "company_website_url": "https://www.g2.com/external_clickthroughs/record?secure%5Bproduct_id%5D=1392&secure%5Btoken%5D=53bf79a9314c8a9a3bc2915961fb5ff601286d626b3a7dd40f908e013919bccc&secure%5Burl%5D=https%3A%2F%2Fgithub.com%2Ffeatures&secure%5Burl_type%5D=product_website",
+            "review_count": "1,974 GitHub Reviews",
+            "company_rating": "4.7out of5"
+        },
+        {
+            "url": "https://www.g2.com/products/asana/reviews",
+            "company_name": "Asana",
+            "company_description": "Why is Asana ranked #1 in the G2 Grid for Project Management and Work Management with more than 8,000 user reviews?   \n\nBecause we help teams orchestrate their work, from daily tasks to strategic initiatives. With Asana, teams are more confident, move faster, and accomplish more with less\u2014no matter where they\u2019re located. \n\nAsana was built thoughtfully, so you can execute according to plan. Where other work management platforms appear to focus on quantity over quality of features, Asana is focused on the scalability and reliability of its platform\u2014so you can always be ready to work. \n\nMore than 114,000 paying organizations and millions across 190 countries rely on Asana to manage product launches, marketing campaigns, company objectives, and more. \n\nGet started fast with a free trial",
+            "company_website_url": "https://www.g2.com/external_clickthroughs/record?secure%5Bproduct_id%5D=278&secure%5Btoken%5D=36416f1b8a9b3349064b3ae2313ba4dcfed4567c054eeeab730e843ac718236c&secure%5Burl%5D=https%3A%2F%2Fasana.com%2Fproduct&secure%5Burl_type%5D=product_website",
+            "review_count": "9,400 Asana Reviews",
+            "company_rating": "4.3out of5"
+        }
+    ]
+}
